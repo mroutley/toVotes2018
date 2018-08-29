@@ -10,3 +10,5 @@ Description: Assembles votes from prior elections into census tracts to align wi
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+URL: https://github.com/mroutley/toVotes2018
+BugReports: https://github.com/mroutley/toVotes2018/issues
