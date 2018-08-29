@@ -1,0 +1,12 @@
+Package: toVotes2018
+Title: Predictions for the 2018 Mayoral election in Toronto
+Version: 0.1
+Authors@R: 
+    person(given = "Matthew",
+           family = "Routley",
+           role = c("aut", "cre"),
+           email = "matt@routleynet.org")
+Description: Assembles votes from prior elections into census tracts to align with census data.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
