@@ -2,4 +2,4 @@
 .RData
 .Rproj.user
 data-raw/*.zip
-data-raw/VOTING*
+data-raw/2*
