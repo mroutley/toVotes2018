@@ -22,3 +22,8 @@ years <- as.integer(xml2::xml_text(xml2::xml_find_all(census_xml,
                                                       ns)))
 values <- as.integer(xml2::xml_attr(xml2::xml_find_all(census_xml, stringr::str_c(to_nodes, "/generic:Obs//*[@value]"), ns), "value"))
 labels <- as.integer(xml2::xml_attr(xml2::xml_find_all(census_xml, stringr::str_c(to_nodes, "/generic:SeriesKey/generic:Value"), ns), "value"))
+
+#TODO: Use Excel files instead? GEO_CODE starting with 535 is Toronto
+# 98-400-X2016005 is age and sex
+# 98-400-X2016100 is income
+# Available from https://www12.statcan.gc.ca/census-recensement/2016/dp-pd/dt-td/index-eng.cfm
