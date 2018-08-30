@@ -16,4 +16,5 @@ Imports: toVotes,
     sf
 Suggests: dplyr,
     tidyverse,
-    magrittr
+    magrittr,
+    xml2
