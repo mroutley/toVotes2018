@@ -1,7 +1,7 @@
 Package: toVotes2018
 Title: Predictions for the 2018 Mayoral election in Toronto
 Version: 0.1
-Authors@R: 
+Authors@R:
     person(given = "Matthew",
            family = "Routley",
            role = c("aut", "cre"),
@@ -12,3 +12,9 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/mroutley/toVotes2018
 BugReports: https://github.com/mroutley/toVotes2018/issues
+Imports: toVotes,
+    sf
+Suggests: dplyr,
+    tidyverse,
+    magrittr,
+    xml2
