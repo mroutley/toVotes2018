@@ -56,15 +56,37 @@ positions <-
   tidyr::gather(issue, value, -CT) %>%
   dplyr::mutate(CT = as.character(CT))
 
-# Maps --------------------------------------------------------------------
-
 to_positions <- ct_geo_to %>%
   dplyr::left_join(positions, by = c("id" = "CT"))
+
+# Predictions -------------------------------------------------------------
+
+predictions <-
+  readxl::read_excel("data-raw/2018 mayoral prediction.xlsx", sheet = "Summary") %>%
+  dplyr::mutate(CT = `Row Labels`) %>%
+  dplyr::select(CT, Tory, Keesmaat) %>%
+  tidyr::gather(candidate, proportion, -CT) %>%
+  dplyr::mutate(CT = as.character(CT))
+
+to_predictions <- ct_geo_to %>%
+  dplyr::left_join(predictions, by = c("id" = "CT"))
+
+# Maps --------------------------------------------------------------------
 
 library(ggmap)
 library(mapproj)
 toronto_map <- qmap("queens park,toronto", zoom = 11, maptype = 'terrain')
 toronto_map +
-  geom_polygon(aes(x=long, y=lat, group=group, fill=value), alpha = 5/6, data = subset(to_positions, !is.na(issue))) +
-  scale_colour_brewer("Issue") +
+  geom_polygon(aes(x=long, y=lat, group=group, fill=cut_interval(value, 5)), alpha = 5/6, data = subset(to_positions, !is.na(issue))) +
+  scale_fill_brewer("Natural position", palette = "YlOrBr", labels=c("Left", "", "", "", "Right")) +
   facet_wrap(~issue)
+
+# toronto_map +
+#   geom_polygon(aes(x=long, y=lat, group=group, fill = cut_interval(value, 5)), alpha = 5/6, data = subset(to_positions, !is.na(issue))) +
+#   scale_fill_brewer("Natural position", type = "div", labels=c("Left", "", "", "", "Right")) +
+#   facet_wrap(~issue)
+
+toronto_map +
+  geom_polygon(aes(x=long, y=lat, group=group, fill = cut_interval(proportion, 5)), alpha = 5/6, data = subset(to_predictions, !is.na(proportion))) +
+  scale_fill_brewer("Proportion of votes", palette = "YlOrBr", labels=c("Low", "", "", "", "High")) +
+  facet_wrap(~candidate)
