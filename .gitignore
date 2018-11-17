@@ -4,3 +4,8 @@
 data-raw/*.zip
 data-raw/2*
 data-raw/98-*
+data-raw/gct*
+data-raw/VOTING*
+data-raw/Natural*
+data-raw/92*pdf
+.DS_Store
