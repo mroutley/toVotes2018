@@ -66,10 +66,13 @@ predictions <-
   dplyr::mutate(CT = `Row Labels`) %>%
   dplyr::select(CT, Tory, Keesmaat) %>%
   tidyr::gather(candidate, proportion, -CT) %>%
-  dplyr::mutate(CT = as.character(CT))
+  dplyr::mutate(CT = as.character(CT)) %>%
+  dplyr::rename(predicted_proportion = proportion)
 
 to_predictions <- ct_geo_to %>%
   dplyr::left_join(predictions, by = c("id" = "CT"))
+
+readr::write_csv(predictions, "data-raw/predictions.csv")
 
 # Maps --------------------------------------------------------------------
 
